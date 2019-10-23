@@ -1,2 +1,11 @@
 # Project exclude paths
 /venv/
+/.idea/.gitignore
+/.idea/dbnavigator.xml
+/.idea/lab1.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/codeStyles/Project.xml
+/readme.md
+/.idea/vcs.xml
