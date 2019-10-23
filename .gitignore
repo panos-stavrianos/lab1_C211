@@ -10,3 +10,6 @@
 /readme.md
 /.idea/vcs.xml
 /.idea/other.xml
+/geckodriver.log
+/output.pdf
+/Football/data.txt

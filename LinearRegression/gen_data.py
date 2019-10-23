@@ -7,7 +7,7 @@ while True:
         break
 while True:
     prefix = input("Set a prefix(the output file format will be 'prefix_#n'):\n")
-    if prefix != "" and not str.isdigit(prefix):
+    if prefix != "":
         break
 
 for i in range(files_n):

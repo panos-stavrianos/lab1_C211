@@ -1,11 +1,12 @@
 import operator
 import random
+import sys
 
 from tabulate import tabulate
 
 teams = {}
 
-with open('test.txt') as f:
+with open(sys.argv[1]) as f:
     def add_to_matches(team, goals_scored, goals_taken):
         if team not in teams.keys():
             teams[team] = {"points": 0, "goals_scored": 0, "goals_taken": 0}
@@ -38,20 +39,13 @@ for i, team in enumerate(teams.keys()):
          teams[team]['points'],
          "{}-{}".format(teams[team]['goals_scored'], teams[team]['goals_taken'])
          ])
-with open("output.txt", "w") as f:
-    f.writelines(
-        tabulate(tabular_data=ranking, disable_numparse=True,
-                 tablefmt="plain"))
+
 random.shuffle(ranking)
-with open("output.txt", "w") as f:
-    f.writelines(map(lambda record: "{}\t{}\t{}\n".format(*record), ranking))
 
 ranking = sorted(ranking, key=operator.itemgetter(0), reverse=False)  # sort with team name
 ranking = sorted(ranking, key=operator.itemgetter(1), reverse=True)  # sort with points
 for i, r in enumerate(ranking):
     ranking[i] = ["{}.".format(i)] + r
 
-with open("output_table.txt", "w") as f:
-    f.writelines(
-        tabulate(tabular_data=ranking, headers=['team', 'points', 'goals'], disable_numparse=True,
-                 tablefmt="fancy_grid"))
+print(tabulate(tabular_data=ranking, headers=['team', 'points', 'goals'], disable_numparse=True,
+               tablefmt="fancy_grid"))
