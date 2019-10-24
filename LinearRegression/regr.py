@@ -12,14 +12,14 @@ def run_command(command):
 
 files = list(sys.argv)
 files.pop(0)
-command = "./regr.sh {}".format(" ".join(files))
+command = "./regr {}".format(" ".join(files))
 
 predictions = []
 for r in run_command(command):
     pred = r.split(",")[1].split(" ")
     pred.pop(0)
     predictions.append(list(map(lambda i: i.split("=")[1], pred)))
-print(predictions)
+
 for index, file_name in enumerate(files):
     with open(file_name, "r") as f:
         data = list(map(lambda line: line.replace("\n", "").split(":"), f.readlines()))
@@ -90,7 +90,7 @@ for index, file_name in enumerate(files):
     else:
         x, y = get_x_y(float(predictions[index][0]), float(predictions[index][1]), min_X, max_X)  # form predicted a,b
 
-    ax.plot(x, y, '-g', label='regr.sh')
+    ax.plot(x, y, '-g', label='regr')
 
     ax.plot(X, Y, 'ro', label='X,Y')  # the generated X,Y
     ax.legend()
