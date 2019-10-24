@@ -35,12 +35,17 @@ for index, file_name in enumerate(files):
         sum_x2 = sum(map(lambda x: x ** 2, X))
 
         a_d = (length * sum_x2 - sum_x ** 2)
-        if a_d == 0:
+        print(a_d)
+        if round(a_d, 5) == 0.00:
             a = 0
             c = 1
-        else:
-            a = (length * sum_xy - sum_x * sum_y) / a_d
-            c = 0
+            b = X[0]
+            error = 0
+
+            return a, b, c, error
+
+        a = (length * sum_xy - sum_x * sum_y) / a_d
+        c = 0
 
         b = (sum_y - a * sum_x) / length
         error = sum(map(lambda x, y: (y - (a * x + b)) ** 2, X, Y))
@@ -52,8 +57,8 @@ for index, file_name in enumerate(files):
         return a, b, c, error
 
 
-    def get_x_y(a, b):
-        x = np.linspace(-100, 100, 10)
+    def get_x_y(a, b, start=-100.0, end=100.0):
+        x = np.linspace(start, end, 10)
         y = a * x + b
         return x, y
 
@@ -72,11 +77,20 @@ for index, file_name in enumerate(files):
                                                          predictions[index][2],
                                                          predictions[index][3]))
 
-    x, y = get_x_y(_a, _b)  # form predicted a,b
+    min_X, max_X, min_Y, max_Y = min(X), max(X), min(Y), max(Y)
+    if _c == 1:
+        min(X)
+        y, x = get_x_y(_a, _b, min_Y, max_Y)  # form predicted a,b
+    else:
+        x, y = get_x_y(_a, _b, min_X, max_X)  # form predicted a,b
+
     ax.plot(x, y, '-b', label='MSE')
 
-    # FILE: input2, a=-2.13 b=1.23 c=1 err=13.25
-    x, y = get_x_y(float(predictions[index][0]), float(predictions[index][1]))  # form predicted a,b
+    if _c == 1:
+        y, x = get_x_y(float(predictions[index][0]), float(predictions[index][1]), min_Y, max_Y)  # form predicted a,b
+    else:
+        x, y = get_x_y(float(predictions[index][0]), float(predictions[index][1]), min_X, max_X)  # form predicted a,b
+
     ax.plot(x, y, '-g', label='regr.sh')
 
     ax.plot(X, Y, 'ro', label='X,Y')  # the generated X,Y
