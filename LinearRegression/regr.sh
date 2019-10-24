@@ -72,7 +72,7 @@ for file in "$@"; do
   error=$(LC_NUMERIC=C printf %0.2f "$error")
 
   #FILE: input2, a=-2.13 b=1.23 c=1 err=13.25
-  echo "FILE: $file, a=$a b=$b c=$c"
+  echo "FILE: $file, a=$a b=$b c=$c err=$error"
 
   unset X
   unset Y

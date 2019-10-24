@@ -15,7 +15,7 @@ for i in range(files_n):
     a = round(random.uniform(-10, 10), 2)
     b = round(random.uniform(-10, 10), 2)
     variance = round(random.uniform(-500, 500), 2)
-    constant_x = (random.randrange(-2, 3) < 0, round(random.uniform(-100, 100), 2))
+    constant_x = (random.randrange(-2, 5) < 0, round(random.uniform(-100, 100), 2))
 
     X = []
     Y = []

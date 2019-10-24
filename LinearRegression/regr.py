@@ -19,7 +19,6 @@ for r in run_command(command):
     pred = r.split(",")[1].split(" ")
     pred.pop(0)
     predictions.append(list(map(lambda i: i.split("=")[1], pred)))
-
 print(predictions)
 for index, file_name in enumerate(files):
     with open(file_name, "r") as f:
@@ -49,8 +48,8 @@ for index, file_name in enumerate(files):
         a = round(a, 2)
         b = round(b, 2)
         error = round(error, 2)
-        print("a = {}, b = {}, error={}".format(a, b, error))
-        return a, b, error
+
+        return a, b, c, error
 
 
     def get_x_y(a, b):
@@ -60,13 +59,26 @@ for index, file_name in enumerate(files):
 
 
     fig, ax = plt.subplots()
-    _a, _b, error = mse()
+    _a, _b, _c, _error = mse()
+
+    print(" mse: FILE: {}, a={} b={} c={} err={}".format(file_name,
+                                                         _a,
+                                                         _b,
+                                                         _c,
+                                                         _error))
+    print("regr: FILE: {}, a={} b={} c={} err={}".format(file_name,
+                                                         predictions[index][0],
+                                                         predictions[index][1],
+                                                         predictions[index][2],
+                                                         predictions[index][3]))
+
     x, y = get_x_y(_a, _b)  # form predicted a,b
     ax.plot(x, y, '-b', label='MSE')
 
+    # FILE: input2, a=-2.13 b=1.23 c=1 err=13.25
     x, y = get_x_y(float(predictions[index][0]), float(predictions[index][1]))  # form predicted a,b
     ax.plot(x, y, '-g', label='regr.sh')
 
     ax.plot(X, Y, 'ro', label='X,Y')  # the generated X,Y
     ax.legend()
-    plt.show()
+plt.show()
