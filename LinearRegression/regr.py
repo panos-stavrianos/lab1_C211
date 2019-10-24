@@ -35,7 +35,6 @@ for index, file_name in enumerate(files):
         sum_x2 = sum(map(lambda x: x ** 2, X))
 
         a_d = (length * sum_x2 - sum_x ** 2)
-        print(a_d)
         if round(a_d, 5) == 0.00:
             a = 0
             c = 1
