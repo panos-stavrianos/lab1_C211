@@ -21,6 +21,8 @@ jobs:
       run: |
         cd LinearRegression
         python3 gen_data.py
-        ./regr data_0.csv  data_1.csv  data_2.csv # Get the results!
+        3
+        data
+        ./regr data_0.csv  data_1.csv  data_2.csv
         python3 regr.py data_0.csv  data_1.csv  data_2.csv 
   
