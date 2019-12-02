@@ -1,0 +1,26 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: start 
+      run: |
+        cd LinearRegression
+        python3 gen_data.py
+        ./regr data_0.csv  data_1.csv  data_2.csv # Get the results!
+        python3 regr.py data_0.csv  data_1.csv  data_2.csv 
+  
