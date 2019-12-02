@@ -20,9 +20,7 @@ jobs:
     - name: start 
       run: |
         cd LinearRegression
-        python3 gen_data.py
-        3
-        data
+        printf "3\ndata" | python3 gen_data.py 
         ./regr data_0.csv  data_1.csv  data_2.csv
         python3 regr.py data_0.csv  data_1.csv  data_2.csv 
   
