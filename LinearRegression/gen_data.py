@@ -20,11 +20,7 @@ for i in range(files_n):
     X = []
     Y = []
     while len(X) <= length:
-        if constant_x[0]:
-            x_ = constant_x[1]
-        else:
-            x_ = round(random.uniform(-100, 100), 2)
-
+        x_ = constant_x[1] if constant_x[0] else round(random.uniform(-100, 100), 2)
         # if x_ in X:
         #     continue
         y_ = a * x_ + b + round(random.uniform(-variance, variance), 2)

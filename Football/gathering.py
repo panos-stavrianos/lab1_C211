@@ -7,7 +7,7 @@ conn = sqlite3.connect('data.db')
 cursor = conn.execute("SELECT id,Country,League from Competitions")
 competitions = {}
 for competition_id, country, league in cursor:
-    if country in competitions.keys():
+    if country in competitions:
         competitions[country].append([competition_id, league])
     else:
         competitions[country] = [[competition_id, league]]
